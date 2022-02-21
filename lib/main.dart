@@ -167,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   subjectLearnTime
                                       .remove(learnTimeList[index].subject);
                                 }
-                                print(subjectLearnTime);
+                                //print(subjectLearnTime);
                                 learnTimeList.removeAt(index);
                                 print(learnTimeList.length);
                               });
