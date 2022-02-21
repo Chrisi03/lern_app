@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 class LearnTime{
   String subject;
   String time;
-  DateTime? dateTime;
+  DateTime dateTime;
 
   LearnTime(this.subject,this.time,this.dateTime);
 

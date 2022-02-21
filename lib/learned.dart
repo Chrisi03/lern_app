@@ -1,30 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:intl/date_symbol_data_file.dart';
+//import 'package:intl/date_symbol_data_http_request.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/locale.dart';
-import 'package:lern_app/learnTime.dart';
-import 'package:lern_app/main.dart';
 
-class Lerned extends StatefulWidget {
+import 'package:lern_app/learnTime.dart';
+
+
+class Learned extends StatefulWidget {
   final void Function(LearnTime learnTime) addLearnTime;
 
-  Lerned(this.addLearnTime, {Key? key}) : super(key: key);
-  static const options = ['A', 'B', 'C'];
+  Learned(this.addLearnTime, {Key? key}) : super(key: key);
+  static const options = ['BWM', 'POS', 'DBI','NVS'];
 
   @override
-  State<Lerned> createState() => _LernedState();
+  State<Learned> createState() => _LearnedState();
 }
 
-class _LernedState extends State<Lerned> {
+class _LearnedState extends State<Learned> {
 
   var learnTimeList = <LearnTime>[];
-  String selectOption = Lerned.options[0];
+  String selectOption = Learned.options[0];
   final controller = TextEditingController();
   DateTime? dateTime;
 
+
   List<DropdownMenuItem<String>> buildDropDownItems() {
     final result = <DropdownMenuItem<String>>[];
-    for (final option in Lerned.options) {
+    for (final option in Learned.options) {
       final item = DropdownMenuItem(
         child: Text(option),
         value: option,
@@ -70,7 +73,7 @@ class _LernedState extends State<Lerned> {
             child: Text(dateTime == null ? "Datum" : DateFormat.yMd().format(dateTime!)),
           ),
           FloatingActionButton(onPressed: () {
-            var learnTime = new LearnTime(selectOption,controller.text,dateTime);
+            var learnTime = LearnTime(selectOption,controller.text,dateTime!);
             widget.addLearnTime(learnTime);
             Navigator.of(context).pop();
             },child:
