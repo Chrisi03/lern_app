@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lern_app/learnTime.dart';
 import 'package:lern_app/learned.dart';
+import 'package:sortedmap/sortedmap.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,13 +33,24 @@ class _MyHomePageState extends State<MyHomePage> {
   var learnTimeList = <LearnTime>[];
   var subjectLearnTime = {};
 
+
   void getSortedList() {
     var sortedList = {};
-    sortedList = SplayTreeMap.from(
+   /* sortedList = SplayTreeMap.from(
         subjectLearnTime,
         (key1, key2) =>
             subjectLearnTime[key2].compareTo(subjectLearnTime[key1]));
     subjectLearnTime = Map<String, double>.from(sortedList);
+
+    */
+
+    var sortedKeys = subjectLearnTime.keys.toList(growable:false)
+      ..sort((k1, k2) => subjectLearnTime[k2].compareTo(subjectLearnTime[k1]));
+    LinkedHashMap sortedMap = LinkedHashMap
+        .fromIterable(sortedKeys, key: (k) => k, value: (k) => subjectLearnTime[k]);
+    subjectLearnTime = Map<String, double>.from(sortedMap);
+    print('2');
+    print(subjectLearnTime);
   }
 
   void addLearnTime(LearnTime learnTime) {
@@ -51,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
               subjectLearnTime[learnTime.subject] +=
                   double.parse(learnTime.time),
             };
+      print('1');
       print(subjectLearnTime);
     });
     getSortedList();
@@ -67,7 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   double setValueOfProgressBars(int index) {
-    getSortedList();
     var keys = subjectLearnTime.keys.toList();
 
     return subjectLearnTime[keys[index]] / getTotalLearnTime();
@@ -170,6 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 //print(subjectLearnTime);
                                 learnTimeList.removeAt(index);
                                 print(learnTimeList.length);
+                                getSortedList();
                               });
                             },
                             icon: Icon(Icons.delete_forever)),
