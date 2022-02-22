@@ -73,6 +73,9 @@ class _LearnedState extends State<Learned> {
             child: Text(dateTime == null ? "Datum" : DateFormat.yMd().format(dateTime!)),
           ),
           FloatingActionButton(onPressed: () {
+            if(dateTime == null){
+              return;
+            }
             var learnTime = LearnTime(selectOption,controller.text,dateTime!);
             widget.addLearnTime(learnTime);
             Navigator.of(context).pop();
