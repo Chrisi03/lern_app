@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+// ignore: file_names
+
 import 'package:flutter/material.dart';
 
 class ProgressBarList extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final subjectLearnTime;
 
   const ProgressBarList(this.subjectLearnTime, {Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class ProgressBarList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(subjectLearnTime.length==0){
-      return Text('Study some');
+      return const Text('Study some');
     }
     return ListView.builder(
         shrinkWrap: true,
@@ -35,7 +37,6 @@ class ProgressBarList extends StatelessWidget {
         itemCount: subjectLearnTime.length,
         itemBuilder: (_, index) {
           var keys = subjectLearnTime.keys.toList();
-          print(keys);
           return Container(
               padding: const EdgeInsets.all(10),
               child: Column(

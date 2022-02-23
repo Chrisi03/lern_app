@@ -10,7 +10,7 @@ import 'package:lern_app/learnTime.dart';
 class Learned extends StatefulWidget {
   final void Function(LearnTime learnTime) addLearnTime;
 
-  Learned(this.addLearnTime, {Key? key}) : super(key: key);
+  const Learned(this.addLearnTime, {Key? key}) : super(key: key);
   static const options = ['BWM', 'POS', 'DBI', 'NVS'];
 
   @override
@@ -37,7 +37,7 @@ class _LearnedState extends State<Learned> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       //color: Theme.of(context).colorScheme.primary,
       height: 300,
       child: Column(
