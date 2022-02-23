@@ -26,6 +26,9 @@ class ProgressBarList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(subjectLearnTime.length==0){
+      return Text('Study some');
+    }
     return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

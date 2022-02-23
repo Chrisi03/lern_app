@@ -58,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
     sortedList();
   }
 
-
   void delete(int index) {
     setState(() {
       subjectLearnTime[learnTimeList[index].subject] -=
@@ -102,9 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 200,
               child: ProgressBarList(subjectLearnTime),
             ),
-            Expanded(
-              child: LearnTimeListView(delete,learnTimeList)
-            )
+            Expanded(child: LearnTimeListView(delete, learnTimeList))
           ],
         ),
         floatingActionButton: FloatingActionButton(
